@@ -1,7 +1,9 @@
 mod command_line;
 pub mod errors;
+mod file_reader;
 
 use errors::Errors;
+use file_reader::FileReader;
 
 use crate::command_line::CommandLine;
 
@@ -16,6 +18,9 @@ pub fn process() -> Result<(), Errors> {
             ))
         }
     };
+
+    let file_reader = FileReader::new(filepath);
+    file_reader.read()?;
 
     Ok(())
 }
